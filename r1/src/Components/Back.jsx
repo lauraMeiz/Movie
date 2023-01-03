@@ -3,6 +3,7 @@ import axios from "axios";
 import OneMovie from "./OneMovie";
 import Create from "./Create";
 import Edit from "./Edit";
+import { Link } from "react-router-dom";
 
 export default function Back() {
   const [movies, setMovies] = useState([]);
@@ -62,6 +63,15 @@ export default function Back() {
 
   return (
     <>
+      <div className="navbar-nav">
+        <Link className="nav-link" to="/">
+          Home
+        </Link>
+
+        <Link className="nav-link" to="/admin">
+          Admin
+        </Link>
+      </div>
       <div className="column-list">
         <div>
           <Create setCreateData={setCreateData}></Create>

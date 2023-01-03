@@ -23,6 +23,17 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+app.get("/movies-manager/all", (req, res) => {
+  const sql = `
+          SELECT
+          *
+          FROM movies
+      `;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
 
 app.get("/movies-manager", (req, res) => {
   const sql = `					
