@@ -25,8 +25,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/movies-manager", (req, res) => {
-  // SELECT column1, column2, ...			<----------------------
-  // FROM table_name;				<----------------------
   const sql = `					
     SELECT						
     *						
