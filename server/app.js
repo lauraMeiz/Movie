@@ -36,6 +36,26 @@ app.get("/movies-manager", (req, res) => {
   });
 });
 
+app.post("/movies-manager", (req, res) => {
+  const sql = `
+         INSERT INTO movies 
+         (title, date, description)
+         VALUES (?, ?, ?)
+      `;
+
+  con.query(
+    sql,
+    [req.body.title, req.body.date, req.body.description],
+    (err, results) => {
+      if (err) {
+        throw err;
+      }
+      res.send(results);
+      console.log(results);
+    }
+  );
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
 });
