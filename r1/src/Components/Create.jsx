@@ -46,9 +46,7 @@ function Create({ setCreateData }) {
             onChange={(e) => inputHandler(e, "title")}
             value={title}
           />
-          <small className="form-text text-muted">
-            Add new movie name here.
-          </small>
+          <small>Add new movie name here.</small>
 
           <label>Movie date</label>
           <input

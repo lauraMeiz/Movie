@@ -1,11 +1,11 @@
 import "./App.scss";
-import MoviesList from "./Components/MoviesList";
+import Back from "./Components/Back";
 
 function App() {
   return (
     <div className="app">
       <header>Favorite Movies List</header>
-      <MoviesList></MoviesList>
+      <Back></Back>
     </div>
   );
 }

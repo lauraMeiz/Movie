@@ -56,6 +56,37 @@ app.post("/movies-manager", (req, res) => {
   );
 });
 
+app.delete("/movies-manager/:id", (req, res) => {
+  const sql = `
+          DELETE FROM movies
+          WHERE id = ?
+          `;
+  con.query(sql, [req.params.id], (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.send(result);
+  });
+});
+
+app.put("/movies-manager/:id", (req, res) => {
+  const sql = `
+          UPDATE movies
+          SET title = ?, date = ?, description = ?
+          WHERE id = ?
+      `;
+  con.query(
+    sql,
+    [req.body.title, req.body.date, req.body.description, req.params.id],
+    (err, results) => {
+      if (err) {
+        throw err;
+      }
+      res.send(results);
+    }
+  );
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
 });
