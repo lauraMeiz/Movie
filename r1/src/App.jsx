@@ -1,4 +1,3 @@
-import "./App.scss";
 import Back from "./Components/Back";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Front from "./Components/Front";

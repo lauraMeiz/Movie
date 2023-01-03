@@ -64,13 +64,16 @@ export default function Back() {
   return (
     <>
       <div className="navbar-nav">
-        <Link className="nav-link" to="/">
-          Home
-        </Link>
+        <div className="logo">My favorite</div>
+        <div className="nav-link-row">
+          <Link className="nav-link" to="/">
+            Home
+          </Link>
 
-        <Link className="nav-link" to="/admin">
-          Admin
-        </Link>
+          <Link className="nav-link" to="/admin">
+            Admin
+          </Link>
+        </div>
       </div>
       <div className="column-list">
         <div>

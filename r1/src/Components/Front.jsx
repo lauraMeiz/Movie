@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import axios from "axios";
 import OneMovie from "../Components/Front/OneMovie";
+import "../../src/Front.scss";
 
 function Front({ show }) {
   const [movies, setMovies] = useState([]);
@@ -18,18 +19,21 @@ function Front({ show }) {
   return (
     <>
       <div className="navbar-nav">
-        <Link className="nav-link" to="/">
-          Home
-        </Link>
-        <Link className="nav-link" to="/admin">
-          Admin
-        </Link>
+        <div className="logo">My favorite</div>
+        <div className="nav-link-row">
+          <Link className="nav-link" to="/">
+            Home
+          </Link>
+          <Link className="nav-link" to="/admin">
+            Admin
+          </Link>
+        </div>
       </div>
 
       <div>
         <div>
-          <div>
-            <ul className="list-group">
+          <div className="column-list">
+            <ul>
               {movies.map((movie) => (
                 <OneMovie key={movie.id} movie={movie}></OneMovie>
               ))}

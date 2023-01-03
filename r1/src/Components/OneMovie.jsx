@@ -4,7 +4,9 @@ export default function OneMovie({ movie, setDeleteId, setModalData }) {
       <li className="column">
         <div>{movie.title}</div>
         <div>{movie.date}</div>
-        <div>{movie.description}</div>
+        <div>
+          <p className="description">{movie.description}</p>
+        </div>
         <button
           type="button"
           className="btn-modal "

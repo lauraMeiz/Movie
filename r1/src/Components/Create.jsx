@@ -35,7 +35,7 @@ function Create({ setCreateData }) {
   return (
     <div className="add">
       <div className="create-title">
-        <h2>Add New Film</h2>
+        <h4>Add New Movie</h4>
       </div>
       <div className="create-tab">
         <div className="form-group">
@@ -61,7 +61,9 @@ function Create({ setCreateData }) {
           <div className="form-group">
             <label>Movie description</label>
             <textarea
-              className="form-control"
+              className="textarea"
+              rows="5"
+              cols="30"
               onChange={(e) => inputHandler(e, "description")}
               value={description}
             ></textarea>
