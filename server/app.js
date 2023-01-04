@@ -126,6 +126,19 @@ app.get("/movies-list-sorted/", (req, res) => {
   });
 });
 
+app.get("/movies-list-search", (req, res) => {
+  const sql = `
+        SELECT
+        *
+        FROM movies
+        WHERE title LIKE '%${req.query.s}%'
+    `;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
 });

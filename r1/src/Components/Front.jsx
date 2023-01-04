@@ -7,6 +7,7 @@ import "../../src/Front.scss";
 
 function Front({ show }) {
   const [movies, setMovies] = useState([]);
+  const [search, setSearch] = useState("");
 
   // Read
   useEffect(() => {
@@ -23,6 +24,14 @@ function Front({ show }) {
       .then((res) => {
         setMovies(res.data);
         // dispachFilms(getDataFromServer(res.data));
+      });
+  };
+  const doSearch = (e) => {
+    setSearch(e.target.value);
+    axios
+      .get("http://localhost:3005/movies-list-search/?s=" + e.target.value)
+      .then((res) => {
+        setMovies(res.data);
       });
   };
 
@@ -64,6 +73,12 @@ function Front({ show }) {
           <svg className="down" onClick={() => serverSort("title", "desc")}>
             <use xlinkHref="#arrow"></use>
           </svg>
+        </div>
+      </div>
+      <div className="row-search">
+        <div className="oneSearch">
+          <label>Search</label>
+          <input type="text" onChange={doSearch} value={search}></input>
         </div>
       </div>
       <div>
