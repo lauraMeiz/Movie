@@ -66,7 +66,7 @@
     font-size: 20px;
     color: rgb(255, 255, 255);
     font-weight: bolder;
-    border-bottom: 3px dotted rgb(250, 247, 247);
+
     .nav-link-row {
       width: 600px;
       a {
@@ -83,8 +83,13 @@
   }
   .nav-link:hover {
     color: rgb(54, 51, 51);
-    border: 3px dotted rgb(252, 248, 248);
-    background-color: rgb(146, 139, 139);
+
+    background: rgb(124, 92, 81);
+    background: linear-gradient(
+      0deg,
+      rgba(124, 92, 81, 1) 0%,
+      rgba(224, 179, 175, 1) 100%
+    );
   }
 }
 ul {
@@ -102,9 +107,20 @@ ul {
     display: flex;
     flex-direction: column;
     width: 200px;
+    height: 80px;
     padding: 10px;
-    border: 1px solid red;
+    background: rgb(124, 92, 81);
+    background: linear-gradient(
+      0deg,
+      rgba(124, 92, 81, 1) 0%,
+      rgba(224, 179, 175, 1) 100%
+    );
+    // border: 1px solid red;
     margin: 5px 10px;
+    transition-property: height;
+    transition-duration: 1s;
+    color: white;
+    border-radius: 5px;
 
     span {
       font-weight: bolder;
@@ -112,10 +128,57 @@ ul {
     .description {
       display: block;
       width: 200px;
+      height: 200px;
+      opacity: 0;
+    }
+    .description:hover {
+      display: block;
+      position: absolute;
+      opacity: 1;
+      z-index: 9;
     }
   }
+  .column:hover {
+    display: block;
+    height: 350px;
+  }
 }
-.add {
+button {
+  width: 80px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+}
+.buttons {
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  align-items: center;
+
+  width: 100%;
+
+  .btn-modal {
+    background-color: rgb(92, 57, 6);
+    color: rgb(255, 255, 255);
+  }
+  .btn-modal:hover {
+    background-color: rgb(148, 131, 110);
+    color: rgb(252, 252, 251);
+  }
+
+  .btn-delete {
+    background-color: rgb(121, 95, 95);
+    color: rgb(255, 255, 255);
+  }
+  .btn-delete:hover {
+    background-color: rgb(128, 7, 7);
+    color: rgb(252, 250, 250);
+  }
+}
+.add,
+.edit {
   width: 300px;
   // background-color: #fbefef;
   margin: 10px calc(50% - 200px);
@@ -145,9 +208,13 @@ ul {
       small {
         font-size: 13px;
       }
+      small {
+        font-style: italic;
+      }
     }
   }
 }
+
 .arrows {
   svg {
     width: 30px;
@@ -167,15 +234,27 @@ ul {
   left: 0;
   width: 100%;
   height: 200%;
-  background-color: rgba(36, 3, 3, 0.9);
+  background-color: rgba(58, 42, 29, 1);
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   z-index: 20;
-  .list-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  .create-title {
+    color: white;
+  }
+  .form-group {
+    label {
+      color: rgb(32, 17, 3);
+      text-align: center;
+    }
+    input,
+    textarea {
+      background-color: rgba(58, 42, 29, 0.9);
+      color: white;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 17px;
+    }
   }
 }

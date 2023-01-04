@@ -5,8 +5,9 @@ export default function OneMovie({ movie }) {
         <div>
           <span>{movie.title}</span> ({movie.date})
         </div>
-
-        <div>{movie.description}</div>
+        <div className="description">
+          <p>{movie.description}</p>
+        </div>
       </li>
     </>
   );

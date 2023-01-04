@@ -49,56 +49,66 @@ function Edit({ setModalData, modalData, setEditData }) {
 
   return (
     <div className="modal">
-      <div className="create-title">
-        <h4>Edit New Movie</h4>
-      </div>
-      <button
+      <div className="edit">
+        <div className="create-title">
+          <h3>Edit New Movie</h3>
+        </div>
+        {/* <button
         type="button"
         className="close"
         onClick={() => setModalData(null)}
       >
         close
-      </button>
+      </button> */}
 
-      <div className="create-tab">
-        <div className="form-group">
-          <label>Movie title</label>
-          <input
-            type="text"
-            className="form-control"
-            onChange={(e) => inputHandler(e, "title")}
-            value={title}
-          />
-          <small>Edit movie name here</small>
+        <div className="create-tab">
+          <div className="form-group">
+            <label>Movie title</label>
+            <input
+              type="text"
+              className="form-control"
+              onChange={(e) => inputHandler(e, "title")}
+              value={title}
+            />
+            <small>Edit movie name here</small>
 
-          <label>Movie date</label>
-          <input
-            type="text"
-            className="form-control"
-            onChange={(e) => inputHandler(e, "date")}
-            value={date}
-          />
-          <small>Movie date.</small>
+            <label>Movie date</label>
+            <input
+              type="text"
+              className="form-control"
+              onChange={(e) => inputHandler(e, "date")}
+              value={date}
+            />
+            <small>Movie date.</small>
 
-          <label>Movie description</label>
-          <textarea
-            className="textarea"
-            rows="4"
-            cols="50"
-            onChange={(e) => inputHandler(e, "description")}
-            value={description}
-          ></textarea>
-          <small>Movie description.</small>
+            <label>Movie description</label>
+            <textarea
+              className="textarea"
+              rows="4"
+              cols="50"
+              onChange={(e) => inputHandler(e, "description")}
+              value={description}
+            ></textarea>
+            <small>Movie description.</small>
+          </div>
+
+          <div className="buttons">
+            <button
+              type="button"
+              className="btn-modal "
+              onClick={buttonHandler}
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              className="btn-delete"
+              onClick={() => setModalData(null)}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
-      </div>
-
-      <div className="buttons">
-        <button type="button" onClick={buttonHandler}>
-          Save
-        </button>
-        <button type="button" onClick={() => setModalData(null)}>
-          Cancel
-        </button>
       </div>
     </div>
   );

@@ -71,7 +71,7 @@ function Create({ setCreateData }) {
           </div>
         </div>
         <div className="buttons">
-          <button type="button" className="" onClick={buttonHandler}>
+          <button type="button" className="btn-modal" onClick={buttonHandler}>
             Add
           </button>
         </div>
