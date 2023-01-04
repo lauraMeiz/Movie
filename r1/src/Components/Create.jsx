@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function Create({ setCreateData }) {
   const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(null);
   const [description, setDescription] = useState("");
 
   const buttonHandler = () => {
@@ -12,7 +12,7 @@ function Create({ setCreateData }) {
       description,
     });
     setTitle("");
-    setDate("");
+    setDate(null);
     setDescription("");
   };
 

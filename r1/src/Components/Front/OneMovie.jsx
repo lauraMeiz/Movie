@@ -1,4 +1,4 @@
-export default function OneMovie({ movie, setDeleteId, setModalData }) {
+export default function OneMovie({ movie }) {
   return (
     <>
       <li className="column">

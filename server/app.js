@@ -97,6 +97,34 @@ app.put("/movies-manager/:id", (req, res) => {
     }
   );
 });
+app.get("/movies-list-sorted/", (req, res) => {
+  let sql;
+  if (req.query.by == "title" && req.query.dir == "asc") {
+    sql = `
+        SELECT   *  FROM movies ORDER BY title ASC
+    `;
+  } else if (req.query.by == "title" && req.query.dir == "desc") {
+    sql = `
+        SELECT   *  FROM movies ORDER BY title DESC
+    `;
+  } else if (req.query.by == "date" && req.query.dir == "asc") {
+    sql = `
+        SELECT   *  FROM movies ORDER BY date ASC
+    `;
+  } else {
+    sql = `
+        SELECT   *  FROM movies ORDER BY date DESC
+    `;
+  }
+
+  con.query(sql, (err, results) => {
+    if (err) {
+      throw err;
+    }
+    res.send(results);
+    console.log(results);
+  });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);

@@ -15,6 +15,16 @@ function Front({ show }) {
       setMovies(res.data);
     });
   }, [show]);
+  const serverSort = (by, dir) => {
+    //is cia siusim i servery (dir - kur, by - pagal ka)
+    //
+    axios
+      .get("http://localhost:3005/movies-list-sorted/?dir=" + dir + "&by=" + by)
+      .then((res) => {
+        setMovies(res.data);
+        // dispachFilms(getDataFromServer(res.data));
+      });
+  };
 
   return (
     <>
@@ -29,7 +39,33 @@ function Front({ show }) {
           </Link>
         </div>
       </div>
+      <div className="row-rating">
+        <span>
+          By Date <small> (server)</small>
+        </span>
+        <div className="arrows">
+          <svg className="up" onClick={() => serverSort("date", "asc")}>
+            <use xlinkHref="#arrow"></use>
+          </svg>
+          <svg className="down" onClick={() => serverSort("date", "desc")}>
+            <use xlinkHref="#arrow"></use>
+          </svg>
+        </div>
+      </div>
 
+      <div className="row-rating">
+        <span>
+          By title <small> (server)</small>
+        </span>
+        <div className="arrows">
+          <svg className="up" onClick={() => serverSort("title", "asc")}>
+            <use xlinkHref="#arrow"></use>
+          </svg>
+          <svg className="down" onClick={() => serverSort("title", "desc")}>
+            <use xlinkHref="#arrow"></use>
+          </svg>
+        </div>
+      </div>
       <div>
         <div>
           <div className="column-list">
