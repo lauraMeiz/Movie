@@ -8,6 +8,7 @@ import "../../src/Front.scss";
 function Front({ show }) {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
+  const [notFound, setNotFound] = useState("");
 
   // Read
   useEffect(() => {
@@ -17,21 +18,23 @@ function Front({ show }) {
     });
   }, [show]);
   const serverSort = (by, dir) => {
-    //is cia siusim i servery (dir - kur, by - pagal ka)
-    //
     axios
       .get("http://localhost:3005/movies-list-sorted/?dir=" + dir + "&by=" + by)
       .then((res) => {
         setMovies(res.data);
-        // dispachFilms(getDataFromServer(res.data));
       });
   };
   const doSearch = (e) => {
     setSearch(e.target.value);
+
     axios
       .get("http://localhost:3005/movies-list-search/?s=" + e.target.value)
       .then((res) => {
         setMovies(res.data);
+        if (search[0] === res.data[0]) {
+          setNotFound("Something wrong, please, try again");
+          console.log(search);
+        }
       });
   };
 
@@ -49,30 +52,28 @@ function Front({ show }) {
         </div>
       </div>
       <div className="row-rating">
-        <span>
-          By Date <small> (server)</small>
-        </span>
-        <div className="arrows">
-          <svg className="up" onClick={() => serverSort("date", "asc")}>
-            <use xlinkHref="#arrow"></use>
-          </svg>
-          <svg className="down" onClick={() => serverSort("date", "desc")}>
-            <use xlinkHref="#arrow"></use>
-          </svg>
+        <div className="row-rating-date">
+          <span>By Date</span>
+          <div className="arrows">
+            <svg className="up" onClick={() => serverSort("date", "asc")}>
+              <use xlinkHref="#arrow"></use>
+            </svg>
+            <svg className="down" onClick={() => serverSort("date", "desc")}>
+              <use xlinkHref="#arrow"></use>
+            </svg>
+          </div>
         </div>
-      </div>
 
-      <div className="row-rating">
-        <span>
-          By title <small> (server)</small>
-        </span>
-        <div className="arrows">
-          <svg className="up" onClick={() => serverSort("title", "asc")}>
-            <use xlinkHref="#arrow"></use>
-          </svg>
-          <svg className="down" onClick={() => serverSort("title", "desc")}>
-            <use xlinkHref="#arrow"></use>
-          </svg>
+        <div className="row-rating-title">
+          <span>By title</span>
+          <div className="arrows">
+            <svg className="up" onClick={() => serverSort("title", "asc")}>
+              <use xlinkHref="#arrow"></use>
+            </svg>
+            <svg className="down" onClick={() => serverSort("title", "desc")}>
+              <use xlinkHref="#arrow"></use>
+            </svg>
+          </div>
         </div>
       </div>
       <div className="row-search">
@@ -85,9 +86,13 @@ function Front({ show }) {
         <div>
           <div className="column-list">
             <ul>
-              {movies.map((movie) => (
-                <OneMovie key={movie.id} movie={movie}></OneMovie>
-              ))}
+              {movies.length ? (
+                movies.map((movie) => (
+                  <OneMovie key={movie.id} movie={movie}></OneMovie>
+                ))
+              ) : (
+                <div className="error">{notFound}</div>
+              )}
             </ul>
           </div>
         </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function Create({ setCreateData }) {
   const [title, setTitle] = useState("");
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
 
   const buttonHandler = () => {
@@ -12,7 +12,8 @@ function Create({ setCreateData }) {
       description,
     });
     setTitle("");
-    setDate(null);
+    setDate("");
+
     setDescription("");
   };
 
@@ -23,6 +24,7 @@ function Create({ setCreateData }) {
         break;
       case "date":
         setDate(e.target.value);
+
         break;
       case "description":
         setDescription(e.target.value);
@@ -53,9 +55,17 @@ function Create({ setCreateData }) {
             type="text"
             className="form-control"
             onChange={(e) => inputHandler(e, "date")}
-            value={date}
+            value={date.trim()}
           />
-          <small className="">Movie date.</small>
+          {date.length < 1 ? (
+            <small className="">Movie date.</small>
+          ) : (
+            <small className="">
+              {+date > 2023 || +date < 1880 || isNaN(date)
+                ? "Please, enter just real years (4 digit)"
+                : "Movie date "}
+            </small>
+          )}
         </div>
         <div className="">
           <div className="form-group">

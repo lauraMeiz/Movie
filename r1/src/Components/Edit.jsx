@@ -53,14 +53,6 @@ function Edit({ setModalData, modalData, setEditData }) {
         <div className="create-title">
           <h3>Edit New Movie</h3>
         </div>
-        {/* <button
-        type="button"
-        className="close"
-        onClick={() => setModalData(null)}
-      >
-        close
-      </button> */}
-
         <div className="create-tab">
           <div className="form-group">
             <label>Movie title</label>
@@ -77,14 +69,22 @@ function Edit({ setModalData, modalData, setEditData }) {
               type="text"
               className="form-control"
               onChange={(e) => inputHandler(e, "date")}
-              value={date}
+              value={date.trim()}
             />
-            <small>Movie date.</small>
+            {date.length < 1 ? (
+              <small className="">Movie date.</small>
+            ) : (
+              <small className="">
+                {+date > 2023 || +date < 1880 || isNaN(date)
+                  ? "Please, enter just real years (4 digit)"
+                  : "Movie date "}
+              </small>
+            )}
 
             <label>Movie description</label>
             <textarea
               className="textarea"
-              rows="4"
+              rows="10"
               cols="50"
               onChange={(e) => inputHandler(e, "description")}
               value={description}
