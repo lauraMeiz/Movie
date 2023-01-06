@@ -46,7 +46,7 @@ function Front({ show }) {
           <Link className="nav-link" to="/">
             Home
           </Link>
-          <Link className="nav-link" to="/admin">
+          <Link className="nav-link" to="/login">
             Admin
           </Link>
         </div>

@@ -12,7 +12,6 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/logout" element={<LogoutPage />} />
         <Route index element={<Front show="all" />} />
-        {/* <Route path="admin" element={<Back />}></Route> */}
         <Route
           path="/admin"
           element={
