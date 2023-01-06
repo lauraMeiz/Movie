@@ -110,8 +110,8 @@ function Edit({ setModalData, modalData, setEditData }) {
               <label>Movie description</label>
               <textarea
                 className="textarea"
-                rows="10"
-                cols="50"
+                rows="3"
+                cols="30"
                 onChange={(e) => inputHandler(e, "description")}
                 value={description}
               ></textarea>

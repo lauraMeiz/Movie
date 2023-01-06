@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
@@ -25,6 +25,7 @@ function LoginPage() {
       <div className="create-title">
         <h3>Login</h3>
       </div>
+
       <div className="create-tab">
         <div className="form-group">
           <label>Your name: </label>
@@ -48,6 +49,9 @@ function LoginPage() {
           </button>
         </div>
       </div>
+      <Link className="nav-link-back" to="/">
+        <small>Do you know the password? Not? </small>Back Home
+      </Link>
     </div>
   );
 }

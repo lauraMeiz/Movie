@@ -66,10 +66,10 @@ ul {
 
   .column {
     display: flex;
-    position: relative;
+    // position: relative;
     flex-direction: column;
     width: 200px;
-    height: 200px;
+    height: 220px;
     padding: 10px;
     background: rgb(124, 92, 81);
     background: linear-gradient(
@@ -87,6 +87,7 @@ ul {
       width: 200px;
       text-align: center;
       padding: 10px 0px 10px;
+      cursor: pointer;
       .photo {
         width: 150px;
         height: 150px;
@@ -95,12 +96,45 @@ ul {
     span {
       font-weight: bolder;
     }
-    .description {
-      display: block;
-      width: 200px;
-      height: 200px;
-      opacity: 0;
+    small {
+      font-style: italic;
     }
+    small:hover {
+      color: brown;
+      cursor: pointer;
+    }
+    .modal-photo {
+      top: 5%;
+      left: 0;
+      width: 180%;
+      height: 200%;
+      background: rgb(124, 92, 81);
+      background: linear-gradient(
+        0deg,
+        rgba(124, 92, 81, 1) 0%,
+        rgba(224, 179, 175, 1) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      border-radius: 5px;
+      span {
+        color: rgb(240, 227, 227);
+      }
+      .description {
+        display: block;
+        width: 300px;
+        height: 300px;
+        opacity: 1;
+        color: rgb(223, 210, 210);
+      }
+      p {
+        width: 300px;
+      }
+    }
+
     .description-back {
       display: block;
       position: absolute;
@@ -141,6 +175,11 @@ ul {
     }
   }
 }
+.title {
+  color: rgb(20, 19, 19);
+  padding-top: 10px;
+}
+
 button {
   width: 80px;
   padding: 5px 10px;
@@ -156,7 +195,7 @@ button {
   align-items: center;
 
   width: 100%;
-
+  padding-bottom: 16px;
   .btn-modal {
     background-color: rgb(92, 57, 6);
     color: rgb(255, 255, 255);
@@ -277,21 +316,25 @@ button {
   );
 }
 .modal {
-  position: absolute;
-  margin: auto;
+  position: fixed;
+  // margin: auto;
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
-  background-color: rgb(216, 208, 208);
+  height: 100%;
+  background-color: rgb(77, 71, 71);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   z-index: 20;
   .create-title {
-    color: rgb(80, 79, 79);
+    color: rgb(202, 195, 195);
+    h3 {
+      color: rgb(202, 195, 195);
+    }
   }
+
   .form-group {
     label {
       color: rgb(80, 79, 79);
@@ -307,16 +350,14 @@ button {
     }
   }
 }
-.modal-photo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 50%;
-  background-color: rgb(216, 208, 208, 0.9);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
+.nav-link-back {
+  color: rgb(59, 57, 57);
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.nav-link-back:hover {
+  color: rgb(168, 94, 45);
+  text-decoration: none;
+  font-weight: bolder;
 }
