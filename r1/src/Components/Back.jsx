@@ -72,21 +72,11 @@ export default function Back() {
           <Link className="nav-link" to="/">
             Home
           </Link>
-
-          <Link className="nav-link" to="/login">
-            Admin
+          <Link className="nav-link" to="/logout">
+            Log OUT
           </Link>
         </div>
       </div>
-
-      <div className="container">
-        <div className="row">
-          <div className="col-4">
-            <Link to="/logout">Log OUT</Link>
-          </div>
-        </div>
-      </div>
-
       <div className="column-list">
         <div>
           <Create setCreateData={setCreateData}></Create>

@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import check from "../check";
+import getBase64 from "../Function/getBase64";
 
 function Create({ setCreateData }) {
   const [title, setTitle] = useState("");
@@ -7,20 +8,22 @@ function Create({ setCreateData }) {
   const [description, setDescription] = useState("");
 
   const isValid = check(date);
+  const fileInput = useRef();
 
   const buttonHandler = (event) => {
+    const file = fileInput.current.files[0];
+
     event.preventDefault();
 
-    if (isValid && title && description) {
-      setCreateData({
-        title,
-        date,
-        description,
+    if (isValid && title && description && file) {
+      getBase64(file).then((photo) => {
+        setCreateData({
+          title,
+          date,
+          description,
+          photo,
+        });
       });
-      setTitle("");
-      setDate("");
-
-      setDescription("");
     } else {
       alert(
         `Something wrong !!!!!
@@ -29,6 +32,10 @@ function Create({ setCreateData }) {
         ${description ? description : "Descritpion - Please enter description"}`
       );
     }
+    setTitle("");
+    setDate("");
+
+    setDescription("");
   };
 
   const inputHandler = (e, which) => {
@@ -82,12 +89,19 @@ function Create({ setCreateData }) {
             </small>
           )}
         </div>
+
+        <div className="form-group">
+          <label>Photo</label>
+          <input ref={fileInput} type="file" className="form-control" />
+          <small className="form-text text-muted">Movie photo.</small>
+        </div>
+
         <div className="">
           <div className="form-group">
             <label>Movie description</label>
             <textarea
               className="textarea"
-              rows="5"
+              rows="2"
               cols="30"
               onChange={(e) => inputHandler(e, "description")}
               value={description}

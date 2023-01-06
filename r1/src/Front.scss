@@ -1,42 +1,3 @@
-// .App {
-//   text-align: center;
-// }
-
-// .App-logo {
-//   height: 40vmin;
-//   pointer-events: none;
-// }
-
-// @media (prefers-reduced-motion: no-preference) {
-//   .App-logo {
-//     animation: App-logo-spin infinite 20s linear;
-//   }
-// }
-
-// .App-header {
-//   background-color: #282c34;
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: calc(10px + 2vmin);
-//   color: white;
-// }
-
-// .App-link {
-//   color: #61dafb;
-// }
-
-// @keyframes App-logo-spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
-
 .app {
   background-color: rgb(241, 235, 233);
   min-height: 100vh;
@@ -105,9 +66,10 @@ ul {
 
   .column {
     display: flex;
+    position: relative;
     flex-direction: column;
     width: 200px;
-    height: 80px;
+    height: 200px;
     padding: 10px;
     background: rgb(124, 92, 81);
     background: linear-gradient(
@@ -121,7 +83,15 @@ ul {
     transition-duration: 1s;
     color: white;
     border-radius: 5px;
-
+    .photo-row {
+      width: 200px;
+      text-align: center;
+      padding: 10px 0px 10px;
+      .photo {
+        width: 150px;
+        height: 150px;
+      }
+    }
     span {
       font-weight: bolder;
     }
@@ -131,16 +101,44 @@ ul {
       height: 200px;
       opacity: 0;
     }
-    .description:hover {
+    .description-back {
       display: block;
       position: absolute;
       opacity: 1;
       z-index: 9;
     }
   }
-  .column:hover {
+  .column-back {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 500px;
+    padding: 10px;
+    background: rgb(124, 92, 81);
+    background: linear-gradient(
+      0deg,
+      rgba(124, 92, 81, 1) 0%,
+      rgba(224, 179, 175, 1) 100%
+    );
+    // border: 1px solid red;
+    margin: 5px 10px;
+    transition-property: height;
+    transition-duration: 1s;
+    color: white;
+    border-radius: 5px;
     display: block;
-    height: 350px;
+    .photo-row {
+      width: 200px;
+      text-align: center;
+      padding: 10px 0px 10px;
+      .photo {
+        width: 150px;
+        height: 150px;
+      }
+    }
+    p {
+      font-size: 13px;
+    }
   }
 }
 button {
@@ -187,7 +185,8 @@ button {
   .create-title {
     text-align: center;
     border-bottom: 2px solid rgb(233, 219, 219);
-    h4 {
+    h4,
+    h3 {
       color: rgb(80, 79, 79);
     }
   }
@@ -196,15 +195,14 @@ button {
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
-    padding: 15px;
+    padding: 5px 15px;
     .form-group {
       display: flex;
       flex-direction: column;
       background-color: rgb(250, 246, 248);
-
       padding: 5px;
       label {
-        font-size: 18px;
+        font-size: 15px;
         font-weight: bold;
         padding: 5px;
         text-align: center;
@@ -280,10 +278,11 @@ button {
 }
 .modal {
   position: absolute;
+  margin: auto;
   top: 0;
   left: 0;
   width: 100%;
-  height: 200%;
+  height: auto;
   background-color: rgb(216, 208, 208);
   display: flex;
   flex-direction: row;
@@ -307,4 +306,17 @@ button {
       font-size: 17px;
     }
   }
+}
+.modal-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  background-color: rgb(216, 208, 208, 0.9);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
 }

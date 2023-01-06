@@ -44,6 +44,8 @@ const doAuth = function (req, res, next) {
   }
 };
 app.use(doAuth);
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb" }));
 
 app.get("/admin/hello", (req, res) => {
   res.send("Hello Admin!");
@@ -113,13 +115,13 @@ app.get("/admin/movies-manager", (req, res) => {
 app.post("/movies-manager", (req, res) => {
   const sql = `
          INSERT INTO movies 
-         (title, date, description)
-         VALUES (?, ?, ?)
+         (title, date, description, photo)
+         VALUES (?, ?, ?, ?)
       `;
 
   con.query(
     sql,
-    [req.body.title, req.body.date, req.body.description],
+    [req.body.title, req.body.date, req.body.description, req.body.photo],
     (err, results) => {
       if (err) {
         throw err;
@@ -146,12 +148,18 @@ app.delete("/movies-manager/:id", (req, res) => {
 app.put("/movies-manager/:id", (req, res) => {
   const sql = `
           UPDATE movies
-          SET title = ?, date = ?, description = ?
+          SET title = ?, date = ?, description = ?, photo = ?
           WHERE id = ?
       `;
   con.query(
     sql,
-    [req.body.title, req.body.date, req.body.description, req.params.id],
+    [
+      req.body.title,
+      req.body.date,
+      req.body.description,
+      req.body.photo,
+      req.params.id,
+    ],
     (err, results) => {
       if (err) {
         throw err;

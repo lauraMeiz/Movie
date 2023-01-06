@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import check from "../check";
+import getBase64 from "../Function/getBase64";
 function Edit({ setModalData, modalData, setEditData }) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
@@ -7,16 +8,21 @@ function Edit({ setModalData, modalData, setEditData }) {
   const [id, setId] = useState("0");
 
   const isValid = check(date);
+  const fileInput = useRef();
 
   const buttonHandler = () => {
-    if (isValid && title && description) {
-      setEditData({
-        title,
-        date,
-        description,
-        id,
+    const file = fileInput.current.files[0];
+    if (isValid && title && description && file) {
+      getBase64(file).then((photo) => {
+        setEditData({
+          title,
+          date,
+          description,
+          photo,
+          id,
+        });
+        setModalData(null);
       });
-      setModalData(null);
     } else {
       alert(
         `Something wrong !!!!!
@@ -93,17 +99,25 @@ function Edit({ setModalData, modalData, setEditData }) {
                   : "Movie date "}
               </small>
             )}
-            <label>Movie description</label>
-            <textarea
-              className="textarea"
-              rows="10"
-              cols="50"
-              onChange={(e) => inputHandler(e, "description")}
-              value={description}
-            ></textarea>
-            <small>Movie description.</small>
+          </div>{" "}
+          <div className="form-group">
+            <label>Photo</label>
+            <input ref={fileInput} type="file" className="form-control" />
+            <small className="form-text text-muted">Movie photo.</small>
           </div>
-
+          <div className="">
+            <div className="form-group">
+              <label>Movie description</label>
+              <textarea
+                className="textarea"
+                rows="10"
+                cols="50"
+                onChange={(e) => inputHandler(e, "description")}
+                value={description}
+              ></textarea>
+              <small>Movie description.</small>
+            </div>
+          </div>
           <div className="buttons">
             <button
               type="button"

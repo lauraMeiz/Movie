@@ -21,24 +21,33 @@ function LoginPage() {
     });
   };
   return (
-    <div>
-      <div>
-        name:{" "}
-        <input
-          type="text"
-          value={user}
-          onChange={(e) => setUser(e.target.value)}
-        ></input>
+    <div className="add ">
+      <div className="create-title">
+        <h3>Login</h3>
       </div>
-      <div>
-        password:{" "}
-        <input
-          type="password"
-          value={pass}
-          onChange={(e) => setPass(e.target.value)}
-        ></input>
+      <div className="create-tab">
+        <div className="form-group">
+          <label>Your name: </label>
+          <input
+            type="text"
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+          ></input>
+        </div>
+        <div className="form-group">
+          <label> Your password: </label>
+          <input
+            type="password"
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+          ></input>
+        </div>
+        <div className="buttons">
+          <button className="btn-modal" onClick={doLogin}>
+            Login
+          </button>
+        </div>
       </div>
-      <button onClick={doLogin}>Login</button>
     </div>
   );
 }
