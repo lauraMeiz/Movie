@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("../img/movies-film.png");
+  background-image: url("../src/img/movies-film.png");
   background-repeat: no-repeat;
   background-position-y: 50px;
 }
