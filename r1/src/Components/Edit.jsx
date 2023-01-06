@@ -1,18 +1,30 @@
 import { useEffect, useState } from "react";
+import check from "../check";
 function Edit({ setModalData, modalData, setEditData }) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [id, setId] = useState("0");
 
+  const isValid = check(date);
+
   const buttonHandler = () => {
-    setEditData({
-      title,
-      date,
-      description,
-      id,
-    });
-    setModalData(null);
+    if (isValid && title && description) {
+      setEditData({
+        title,
+        date,
+        description,
+        id,
+      });
+      setModalData(null);
+    } else {
+      alert(
+        `Something wrong !!!!!
+         ${title ? title.toUpperCase() : "Title - Please enter title"}
+         ${date ? date : "Date - Please enter date"} 
+        ${description ? description : "Descritpion - Please enter description"}`
+      );
+    }
   };
 
   const inputHandler = (e, which) => {
@@ -69,18 +81,18 @@ function Edit({ setModalData, modalData, setEditData }) {
               type="text"
               className="form-control"
               onChange={(e) => inputHandler(e, "date")}
-              value={date.trim()}
+              value={date}
             />
+
             {date.length < 1 ? (
               <small className="">Movie date.</small>
             ) : (
               <small className="">
-                {+date > 2023 || +date < 1880 || isNaN(date)
+                {!isValid
                   ? "Please, enter just real years (4 digit)"
                   : "Movie date "}
               </small>
             )}
-
             <label>Movie description</label>
             <textarea
               className="textarea"

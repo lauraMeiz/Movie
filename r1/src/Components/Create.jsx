@@ -1,26 +1,41 @@
 import { useState } from "react";
+import check from "../check";
 
 function Create({ setCreateData }) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
 
-  const buttonHandler = () => {
-    setCreateData({
-      title,
-      date,
-      description,
-    });
-    setTitle("");
-    setDate("");
+  const isValid = check(date);
 
-    setDescription("");
+  const buttonHandler = (event) => {
+    event.preventDefault();
+
+    if (isValid && title && description) {
+      setCreateData({
+        title,
+        date,
+        description,
+      });
+      setTitle("");
+      setDate("");
+
+      setDescription("");
+    } else {
+      alert(
+        `Something wrong !!!!!
+         ${title ? title.toUpperCase() : "Title - Please enter title"}
+         ${date ? date : "Date - Please enter date"} 
+        ${description ? description : "Descritpion - Please enter description"}`
+      );
+    }
   };
 
   const inputHandler = (e, which) => {
     switch (which) {
       case "title":
         setTitle(e.target.value);
+
         break;
       case "date":
         setDate(e.target.value);
@@ -61,7 +76,7 @@ function Create({ setCreateData }) {
             <small className="">Movie date.</small>
           ) : (
             <small className="">
-              {+date > 2023 || +date < 1880 || isNaN(date)
+              {!isValid
                 ? "Please, enter just real years (4 digit)"
                 : "Movie date "}
             </small>
@@ -81,7 +96,7 @@ function Create({ setCreateData }) {
           </div>
         </div>
         <div className="buttons">
-          <button type="button" className="btn-modal" onClick={buttonHandler}>
+          <button type="submit" className="btn-modal" onClick={buttonHandler}>
             Add
           </button>
         </div>
