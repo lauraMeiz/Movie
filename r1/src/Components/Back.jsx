@@ -4,6 +4,7 @@ import OneMovie from "./OneMovie";
 import Create from "./Create";
 import Edit from "./Edit";
 import { Link } from "react-router-dom";
+import { authConfig } from "../Function/auth";
 
 export default function Back() {
   const [movies, setMovies] = useState([]);
@@ -16,10 +17,12 @@ export default function Back() {
 
   // Read
   useEffect(() => {
-    axios.get("http://localhost:3005/movies-manager").then((res) => {
-      console.log(res.data);
-      setMovies(res.data);
-    });
+    axios
+      .get("http://localhost:3005/admin/movies-manager", authConfig())
+      .then((res) => {
+        console.log(res.data);
+        setMovies(res.data);
+      });
   }, [lastUpdate]);
 
   //Create
@@ -70,11 +73,20 @@ export default function Back() {
             Home
           </Link>
 
-          <Link className="nav-link" to="/admin">
+          <Link className="nav-link" to="/login">
             Admin
           </Link>
         </div>
       </div>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-4">
+            <Link to="/logout">Log OUT</Link>
+          </div>
+        </div>
+      </div>
+
       <div className="column-list">
         <div>
           <Create setCreateData={setCreateData}></Create>
