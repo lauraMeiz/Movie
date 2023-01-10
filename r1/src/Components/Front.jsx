@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import axios from "axios";
 import OneMovie from "../Components/Front/OneMovie";
-import "../../src/Front.scss";
+import "../../src/Crud.scss";
 
 function Front({ show }) {
   const [movies, setMovies] = useState([]);

@@ -146,28 +146,44 @@ app.delete("/movies-manager/:id", (req, res) => {
 });
 
 app.put("/movies-manager/:id", (req, res) => {
-  const sql = `
-          UPDATE movies
-          SET title = ?, date = ?, description = ?, photo = ?
-          WHERE id = ?
-      `;
-  con.query(
-    sql,
-    [
+  let sql;
+  let args;
+  if ("" === req.body.photo && req.body.del == 0) {
+    sql = `
+        UPDATE movies
+        SET title = ?, date = ?, description = ?
+        WHERE id = ?
+    `;
+    args = [req.body.title, req.body.date, req.body.description, req.params.id];
+  } else if (1 == req.body.del) {
+    sql = `
+        UPDATE movies
+        SET title = ?, date = ?, description = ?, photo = NULL
+        WHERE id = ?
+    `;
+    args = [req.body.title, req.body.date, req.body.description, req.params.id];
+  } else {
+    sql = `
+      UPDATE movies
+      SET title = ?, date = ?, description = ?, photo = ?
+      WHERE id = ?
+  `;
+    args = [
       req.body.title,
       req.body.date,
       req.body.description,
       req.body.photo,
       req.params.id,
-    ],
-    (err, results) => {
-      if (err) {
-        throw err;
-      }
-      res.send(results);
+    ];
+  }
+  con.query(sql, args, (err, results) => {
+    if (err) {
+      throw err;
     }
-  );
+    res.send(results);
+  });
 });
+
 app.get("/movies-list-sorted/", (req, res) => {
   let sql;
   if (req.query.by == "title" && req.query.dir == "asc") {

@@ -6,6 +6,7 @@ function Create({ setCreateData }) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
+  let photo;
 
   const isValid = check(date);
   const fileInput = useRef();
@@ -29,12 +30,12 @@ function Create({ setCreateData }) {
         `Something wrong !!!!!
          ${title ? title.toUpperCase() : "Title - Please enter title"}
          ${date ? date : "Date - Please enter date"} 
+         ${photo ? photo : "Photo - Please enter photo"}
         ${description ? description : "Descritpion - Please enter description"}`
       );
     }
     setTitle("");
     setDate("");
-
     setDescription("");
   };
 

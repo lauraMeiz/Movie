@@ -33,7 +33,6 @@ export default function Back() {
     axios
       .post("http://localhost:3005/movies-manager", createData)
       .then((res) => {
-        console.log(res);
         setLastUpdate(Date.now());
       });
   }, [createData]);
@@ -46,7 +45,6 @@ export default function Back() {
     axios
       .put("http://localhost:3005/movies-manager/" + editData.id, editData)
       .then((res) => {
-        console.log(res);
         setLastUpdate(Date.now());
       });
   }, [editData]);
@@ -59,7 +57,6 @@ export default function Back() {
     axios
       .delete("http://localhost:3005/movies-manager/" + deleteId.id)
       .then((res) => {
-        console.log(res);
         setLastUpdate(Date.now());
       });
   }, [deleteId]);

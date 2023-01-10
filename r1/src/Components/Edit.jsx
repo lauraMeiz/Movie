@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import check from "../check";
 import getBase64 from "../Function/getBase64";
+import none from "../img/none.png";
 function Edit({ setModalData, modalData, setEditData }) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [id, setId] = useState("0");
+  const [remove, setRemove] = useState(false);
 
   const isValid = check(date);
   const fileInput = useRef();
@@ -19,17 +21,31 @@ function Edit({ setModalData, modalData, setEditData }) {
           date,
           description,
           photo,
+          del: remove ? 1 : 0,
           id,
         });
         setModalData(null);
+        setRemove(false);
       });
-    } else {
+    } else if (isValid && title && description && !file) {
       alert(
-        `Something wrong !!!!!
+        `Check:
          ${title ? title.toUpperCase() : "Title - Please enter title"}
-         ${date ? date : "Date - Please enter date"} 
-        ${description ? description : "Descritpion - Please enter description"}`
+
+         ${date ? date : "Date - Please enter date"}
+
+        ${description ? description : "Description - Please enter description"}`
       );
+      setEditData({
+        title,
+        date,
+        description,
+        photo: "",
+        id,
+        del: remove ? 1 : 0,
+      });
+      setModalData(null);
+      setRemove(false);
     }
   };
 
@@ -91,21 +107,36 @@ function Edit({ setModalData, modalData, setEditData }) {
             />
 
             {date.length < 1 ? (
-              <small className="">Movie date.</small>
+              <small>Movie date.</small>
             ) : (
-              <small className="">
+              <small>
                 {!isValid
                   ? "Please, enter just real years (4 digit)"
                   : "Movie date "}
               </small>
             )}
           </div>{" "}
-          <div className="form-group">
-            <label>Photo</label>
-            <input ref={fileInput} type="file" className="form-control" />
-            <small className="form-text text-muted">Movie photo.</small>
+          <div>
+            <div className="form-group">
+              <label>Photo</label>
+              <input ref={fileInput} type="file" className="form-control" />
+              <small> Photo.</small>
+            </div>
           </div>
-          <div className="">
+          <div className="form-group">
+            <input
+              type="checkbox"
+              onChange={() => setRemove((r) => !r)}
+              checked={remove}
+            />
+            <label>Delete Photo</label>
+          </div>
+          <div className="col-10">
+            {modalData.photo ? (
+              <img className="photo" src={modalData.photo}></img>
+            ) : null}
+          </div>
+          <div>
             <div className="form-group">
               <label>Movie description</label>
               <textarea
