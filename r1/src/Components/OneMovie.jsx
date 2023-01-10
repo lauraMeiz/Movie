@@ -1,4 +1,3 @@
-import { useState } from "react";
 import none from "../img/none.png";
 
 export default function OneMovie({ movie, setDeleteId, setModalData }) {

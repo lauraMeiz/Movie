@@ -41,7 +41,7 @@ function Front({ show }) {
   return (
     <>
       <div className="navbar-nav">
-        <div className="logo">My favorite</div>
+        <div className="logo">List of movies</div>
         <div className="nav-link-row">
           <Link className="nav-link" to="/">
             Home
