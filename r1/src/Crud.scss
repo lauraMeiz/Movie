@@ -405,14 +405,23 @@ button {
   margin-top: 60px;
 }
 .row-search {
-  margin: 10px calc(50% - 150px);
+  margin-left: calc(50% - 150px);
+  margin-top: 10px;
+  position: sticky;
+  top: 40px;
 }
 
 @media (max-width: 550px) {
-  .row-search,
+  // .row-search,
   .row-rating {
     width: 280px;
-    margin: 5px calc(50% - 140px);
+    margin: 60px calc(50% - 140px);
+    justify-content: center;
+  }
+  .row-search {
+    width: 280px;
+    margin-left: calc(50% - 140px);
+    margin-top: 10px;
     justify-content: center;
   }
 }
